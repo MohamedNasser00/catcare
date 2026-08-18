@@ -1,13 +1,8 @@
 /**
  * Central configuration for the CatCare landing page.
- * All environment-driven values live here — never scatter them in components.
  * This is a zero-backend validation MVP: leads are collected via Google Forms.
- *
- * Real production values are baked in below so the site works out of the box.
- * Environment variables can still override them when needed.
+ * All values are hardcoded below so no environment variables are required.
  */
-
-const env = import.meta.env as Record<string, string | undefined>;
 
 const OWNER_GOOGLE_FORM_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLSfUtjDbrWbivooimln8W812FlExxibToAEHs5QlVLQ0GpqRWw/viewform";
@@ -23,12 +18,12 @@ export const siteConfig = {
   description:
     "Find trusted cat sitters in Egypt and stay connected with daily photos and care updates. CatCare is launching in Cairo and Giza.",
   /** e.g. 201012345678 (international format, digits only) */
-  whatsappNumber: (env["VITE_WHATSAPP_NUMBER"] ?? CATCARE_WHATSAPP_NUMBER).replace(/\D/g, ""),
-  gaMeasurementId: env["VITE_GA_MEASUREMENT_ID"] ?? "",
+  whatsappNumber: CATCARE_WHATSAPP_NUMBER.replace(/\D/g, ""),
+  gaMeasurementId: "",
   /** Public Google Form URLs (https://docs.google.com/forms/d/e/.../viewform) */
-  ownerFormUrl: env["VITE_OWNER_GOOGLE_FORM_URL"] ?? OWNER_GOOGLE_FORM_URL,
-  sitterFormUrl: env["VITE_SITTER_GOOGLE_FORM_URL"] ?? SITTER_GOOGLE_FORM_URL,
-  siteUrl: env["VITE_SITE_URL"] ?? "https://catcare.eg",
+  ownerFormUrl: OWNER_GOOGLE_FORM_URL,
+  sitterFormUrl: SITTER_GOOGLE_FORM_URL,
+  siteUrl: "https://catcare.eg",
   currency: "EGP",
 } as const;
 
