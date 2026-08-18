@@ -10,10 +10,10 @@
 const env = import.meta.env as Record<string, string | undefined>;
 
 const OWNER_GOOGLE_FORM_URL =
-  "https://docs.google.com/forms/d/e/1FAIpQLSfUtjDbrWbivooimln8W812FlExxibToAEHs5QlVLQ0GpqRWw/viewform?usp=header";
+  "https://docs.google.com/forms/d/e/1FAIpQLSfUtjDbrWbivooimln8W812FlExxibToAEHs5QlVLQ0GpqRWw/viewform";
 
 const SITTER_GOOGLE_FORM_URL =
-  "https://docs.google.com/forms/d/e/1FAIpQLSdbM3B2YOE9qorVM2uMltCYjW7P1_gGTZi1JKgAJPz2jcY93w/viewform?usp=header";
+  "https://docs.google.com/forms/d/e/1FAIpQLSdbM3B2YOE9qorVM2uMltCYjW7P1_gGTZi1JKgAJPz2jcY93w/viewform";
 
 const CATCARE_WHATSAPP_NUMBER = "201032404246";
 
