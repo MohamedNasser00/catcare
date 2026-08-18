@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { goToOwnerForm } from "@/utils/leadCta";
+import { ownerFormUrl, trackOwnerCta } from "@/utils/leadCta";
 
 const steps = [
   {
@@ -27,20 +27,24 @@ export function HowItWorks() {
         <ol className="mt-10 grid gap-4 md:grid-cols-3">
           {steps.map((step) => (
             <li key={step.number} className="surface-card p-7">
-              <span className="font-display text-3xl font-semibold text-primary">{step.number}</span>
+              <span className="font-display text-3xl font-semibold text-primary">
+                {step.number}
+              </span>
               <h3 className="mt-3 text-lg font-semibold text-foreground">{step.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.text}</p>
             </li>
           ))}
         </ol>
         <div className="mt-8">
-          <Button
-            variant="hero"
-            size="xl"
-            className="w-full sm:w-auto"
-            onClick={() => goToOwnerForm("how_it_works")}
-          >
-            Find My Cat Sitter
+          <Button variant="hero" size="xl" className="w-full sm:w-auto" asChild>
+            <a
+              href={ownerFormUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackOwnerCta("how_it_works")}
+            >
+              Find My Cat Sitter
+            </a>
           </Button>
         </div>
       </div>

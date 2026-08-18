@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { goToOwnerForm, goToSitterForm } from "@/utils/leadCta";
+import { ownerFormUrl, sitterFormUrl, trackOwnerCta, trackSitterCta } from "@/utils/leadCta";
 
 export function FinalCTA() {
   return (
@@ -10,11 +10,25 @@ export function FinalCTA() {
         </h2>
         <p className="mt-4 text-muted-foreground">Join the CatCare early access list.</p>
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-          <Button variant="hero" size="xl" className="w-full sm:w-auto" onClick={() => goToOwnerForm("final_cta")}>
-            I Need a Cat Sitter
+          <Button variant="hero" size="xl" className="w-full sm:w-auto" asChild>
+            <a
+              href={ownerFormUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackOwnerCta("final_cta")}
+            >
+              I Need a Cat Sitter
+            </a>
           </Button>
-          <Button variant="soft" size="xl" className="w-full sm:w-auto" onClick={() => goToSitterForm("final_cta")}>
-            Become a Sitter
+          <Button variant="soft" size="xl" className="w-full sm:w-auto" asChild>
+            <a
+              href={sitterFormUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackSitterCta("final_cta")}
+            >
+              Become a Sitter
+            </a>
           </Button>
         </div>
       </div>

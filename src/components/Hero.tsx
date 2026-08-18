@@ -1,10 +1,14 @@
 import { Button } from "@/components/ui/button";
 import heroCat from "@/assets/hero-cat.jpg";
-import { goToOwnerForm, goToSitterForm } from "@/utils/leadCta";
+import { ownerFormUrl, sitterFormUrl, trackOwnerCta, trackSitterCta } from "@/utils/leadCta";
 
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden" style={{ background: "var(--gradient-warm)" }}>
+    <section
+      id="top"
+      className="relative overflow-hidden"
+      style={{ background: "var(--gradient-warm)" }}
+    >
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 pb-16 pt-10 md:px-6 lg:grid-cols-2 lg:gap-14 lg:pb-24 lg:pt-16">
         <div>
           <p className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1.5 text-xs font-medium text-muted-foreground shadow-[var(--shadow-soft)]">
@@ -19,11 +23,25 @@ export function Hero() {
             and care reports.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Button variant="hero" size="xl" className="w-full sm:w-auto" onClick={() => goToOwnerForm("hero")}>
-              I Need a Cat Sitter
+            <Button variant="hero" size="xl" className="w-full sm:w-auto" asChild>
+              <a
+                href={ownerFormUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackOwnerCta("hero")}
+              >
+                I Need a Cat Sitter
+              </a>
             </Button>
-            <Button variant="soft" size="xl" className="w-full sm:w-auto" onClick={() => goToSitterForm("hero")}>
-              Become a Cat Sitter
+            <Button variant="soft" size="xl" className="w-full sm:w-auto" asChild>
+              <a
+                href={sitterFormUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackSitterCta("hero")}
+              >
+                Become a Cat Sitter
+              </a>
             </Button>
           </div>
         </div>

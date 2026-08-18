@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { goToOwnerForm, goToSitterForm } from "@/utils/leadCta";
+import { ownerFormUrl, sitterFormUrl, trackOwnerCta, trackSitterCta } from "@/utils/leadCta";
 
 export function EarlyAccess() {
   return (
@@ -20,25 +20,31 @@ export function EarlyAccess() {
             <p className="mt-2 text-sm text-muted-foreground">
               Need someone to care for your cat while you&apos;re away?
             </p>
-            <Button
-              variant="hero"
-              size="xl"
-              className="mt-6 w-full"
-              onClick={() => goToOwnerForm("early_access")}
-            >
-              Join as a Cat Owner
+            <Button variant="hero" size="xl" className="mt-6 w-full" asChild>
+              <a
+                href={ownerFormUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackOwnerCta("early_access")}
+              >
+                Join as a Cat Owner
+              </a>
             </Button>
           </article>
           <article className="rounded-2xl border border-border bg-background p-7 shadow-[var(--shadow-soft)]">
             <h3 className="text-xl font-semibold text-foreground">Cat Sitter</h3>
-            <p className="mt-2 text-sm text-muted-foreground">Love cats? Turn that into a side income.</p>
-            <Button
-              variant="accent"
-              size="xl"
-              className="mt-6 w-full"
-              onClick={() => goToSitterForm("early_access")}
-            >
-              Join as a Sitter
+            <p className="mt-2 text-sm text-muted-foreground">
+              Love cats? Turn that into a side income.
+            </p>
+            <Button variant="accent" size="xl" className="mt-6 w-full" asChild>
+              <a
+                href={sitterFormUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackSitterCta("early_access")}
+              >
+                Join as a Sitter
+              </a>
             </Button>
           </article>
         </div>

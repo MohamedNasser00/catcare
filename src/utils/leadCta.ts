@@ -1,5 +1,8 @@
 import { trackEvent } from "@/services/analyticsService";
-import { hasOwnerForm, hasSitterForm, isDev, siteConfig } from "@/config/site";
+import { hasOwnerForm, hasSitterForm, siteConfig } from "@/config/site";
+
+export const ownerFormUrl = siteConfig.ownerFormUrl;
+export const sitterFormUrl = siteConfig.sitterFormUrl;
 
 export function scrollToId(id: string) {
   if (typeof document === "undefined") return;
@@ -8,33 +11,29 @@ export function scrollToId(id: string) {
   el.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-function openForm(url: string, kind: "owner" | "sitter") {
-  if (!url) {
-    if (isDev) {
-      // eslint-disable-next-line no-console
-      console.warn(
-        `[CatCare] Missing VITE_${kind.toUpperCase()}_GOOGLE_FORM_URL — set it in .env before deploying.`,
-      );
-      window.alert(
-        `Development notice: the ${kind} Google Form URL is not configured yet.\nSet VITE_${kind.toUpperCase()}_GOOGLE_FORM_URL in your .env file.`,
-      );
-    }
-    return;
+/**
+ * Analytics-only click handlers for the CTA anchors.
+ * Navigation happens natively via <a href target="_blank" rel="noopener noreferrer">,
+ * so popup blockers cannot swallow it. These handlers must never call
+ * window.open or preventDefault, and errors are swallowed so tracking
+ * can never break navigation.
+ */
+export function trackOwnerCta(location: string) {
+  try {
+    trackEvent("owner_cta_click", { location });
+    trackEvent("owner_google_form_open", { location });
+  } catch {
+    // analytics must never break navigation
   }
-  // Open in a new tab with the same security as rel="noopener noreferrer".
-  window.open(url, "_blank", "noopener,noreferrer");
 }
 
-export function goToOwnerForm(location: string) {
-  trackEvent("owner_cta_click", { location });
-  trackEvent("owner_google_form_open", { location });
-  openForm(siteConfig.ownerFormUrl, "owner");
-}
-
-export function goToSitterForm(location: string) {
-  trackEvent("sitter_cta_click", { location });
-  trackEvent("sitter_google_form_open", { location });
-  openForm(siteConfig.sitterFormUrl, "sitter");
+export function trackSitterCta(location: string) {
+  try {
+    trackEvent("sitter_cta_click", { location });
+    trackEvent("sitter_google_form_open", { location });
+  } catch {
+    // analytics must never break navigation
+  }
 }
 
 export { hasOwnerForm, hasSitterForm };

@@ -3,7 +3,13 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CatLogo } from "@/components/CatLogo";
 import { navLinks, siteConfig } from "@/config/site";
-import { goToOwnerForm, goToSitterForm, scrollToId } from "@/utils/leadCta";
+import {
+  ownerFormUrl,
+  sitterFormUrl,
+  scrollToId,
+  trackOwnerCta,
+  trackSitterCta,
+} from "@/utils/leadCta";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
@@ -65,15 +71,24 @@ export function Navbar() {
         </ul>
 
         <div className="hidden items-center gap-4 lg:flex">
-          <button
-            type="button"
-            onClick={() => goToSitterForm("navbar")}
+          <a
+            href={sitterFormUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackSitterCta("navbar")}
             className="rounded-md text-sm font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             Become a Sitter
-          </button>
-          <Button variant="hero" size="lg" className="rounded-full" onClick={() => goToOwnerForm("navbar")}>
-            Find a Cat Sitter
+          </a>
+          <Button variant="hero" size="lg" className="rounded-full" asChild>
+            <a
+              href={ownerFormUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackOwnerCta("navbar")}
+            >
+              Find a Cat Sitter
+            </a>
           </Button>
         </div>
 
@@ -111,27 +126,31 @@ export function Navbar() {
             ))}
           </ul>
           <div className="mt-3 flex flex-col gap-3">
-            <Button
-              variant="hero"
-              size="xl"
-              className="w-full"
-              onClick={() => {
-                setOpen(false);
-                goToOwnerForm("navbar_mobile");
-              }}
-            >
-              Find a Cat Sitter
+            <Button variant="hero" size="xl" className="w-full" asChild>
+              <a
+                href={ownerFormUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => {
+                  setOpen(false);
+                  trackOwnerCta("navbar_mobile");
+                }}
+              >
+                Find a Cat Sitter
+              </a>
             </Button>
-            <Button
-              variant="soft"
-              size="xl"
-              className="w-full"
-              onClick={() => {
-                setOpen(false);
-                goToSitterForm("navbar_mobile");
-              }}
-            >
-              Become a Sitter
+            <Button variant="soft" size="xl" className="w-full" asChild>
+              <a
+                href={sitterFormUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => {
+                  setOpen(false);
+                  trackSitterCta("navbar_mobile");
+                }}
+              >
+                Become a Sitter
+              </a>
             </Button>
           </div>
         </div>

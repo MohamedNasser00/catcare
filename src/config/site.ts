@@ -23,7 +23,7 @@ export const siteConfig = {
   /** Public Google Form URLs (https://docs.google.com/forms/d/e/.../viewform) */
   ownerFormUrl: OWNER_GOOGLE_FORM_URL,
   sitterFormUrl: SITTER_GOOGLE_FORM_URL,
-  siteUrl: "https://catcare.eg",
+  siteUrl: "https://catcare-egypt.vercel.app",
   currency: "EGP",
 } as const;
 

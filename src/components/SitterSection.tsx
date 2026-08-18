@@ -1,6 +1,6 @@
 import { CalendarClock, MapPin, Wallet, Cat, Star, Coins } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { goToSitterForm } from "@/utils/leadCta";
+import { sitterFormUrl, trackSitterCta } from "@/utils/leadCta";
 
 const benefits = [
   { icon: CalendarClock, label: "Flexible schedule" },
@@ -37,13 +37,15 @@ export function SitterSection() {
             </li>
           ))}
         </ul>
-        <Button
-          variant="accent"
-          size="xl"
-          className="mt-8 w-full sm:w-auto"
-          onClick={() => goToSitterForm("sitter_section")}
-        >
-          Become a Cat Sitter
+        <Button variant="accent" size="xl" className="mt-8 w-full sm:w-auto" asChild>
+          <a
+            href={sitterFormUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackSitterCta("sitter_section")}
+          >
+            Become a Cat Sitter
+          </a>
         </Button>
       </div>
     </section>

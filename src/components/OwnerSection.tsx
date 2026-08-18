@@ -1,6 +1,6 @@
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { goToOwnerForm } from "@/utils/leadCta";
+import { ownerFormUrl, trackOwnerCta } from "@/utils/leadCta";
 
 const benefits = [
   "Home visits",
@@ -25,13 +25,15 @@ export function OwnerSection() {
             A sitter visits your home, follows your instructions, and sends you an update after
             every visit.
           </p>
-          <Button
-            variant="hero"
-            size="xl"
-            className="mt-8 w-full sm:w-auto"
-            onClick={() => goToOwnerForm("owner_section")}
-          >
-            I Need a Cat Sitter
+          <Button variant="hero" size="xl" className="mt-8 w-full sm:w-auto" asChild>
+            <a
+              href={ownerFormUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackOwnerCta("owner_section")}
+            >
+              I Need a Cat Sitter
+            </a>
           </Button>
         </div>
         <ul className="grid gap-3 sm:grid-cols-2">
